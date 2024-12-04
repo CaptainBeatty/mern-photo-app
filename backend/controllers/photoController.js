@@ -32,3 +32,40 @@ exports.getPhotos = async (req, res, next) => {
     next(error);
   }
 };
+// Mettre à jour une photo
+exports.updatePhoto = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { title } = req.body;
+
+    const updatedPhoto = await Photo.findByIdAndUpdate(
+      id,
+      { title },
+      { new: true, runValidators: true }
+    );
+
+    if (!updatedPhoto) {
+      return res.status(404).json({ error: 'Photo not found' });
+    }
+
+    res.status(200).json(updatedPhoto);
+  } catch (error) {
+    next(error);
+  }
+};
+// Supprimer une photo
+exports.deletePhoto = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    const deletedPhoto = await Photo.findByIdAndDelete(id);
+
+    if (!deletedPhoto) {
+      return res.status(404).json({ error: 'Photo not found' });
+    }
+
+    res.status(200).json({ message: 'Photo deleted successfully' });
+  } catch (error) {
+    next(error);
+  }
+};
