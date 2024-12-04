@@ -1,0 +1,15 @@
+# Fichiers Node.js
+node_modules/
+.env
+
+# Dossier des fichiers uploadés
+uploads/
+
+# Dossiers de construction
+FrontEnd/build/
+FrontEnd/.cache/
+BackEnd/dist/
+
+# Fichiers spécifiques à certains éditeurs
+.vscode/
+.DS_Store
